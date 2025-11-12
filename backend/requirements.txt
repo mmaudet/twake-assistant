@@ -1,0 +1,28 @@
+# TheWhisper Backend Dependencies
+
+# Web Framework
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+python-multipart==0.0.20
+
+# Audio Processing
+librosa==0.10.2.post1
+sounddevice==0.5.1
+numpy==1.26.4
+
+# Voice Activity Detection
+silero-vad==5.1.2
+
+# Whisper Model - faster-whisper for CPU/GPU
+# This is compatible with Docker and much faster than original Whisper
+faster-whisper==1.1.0
+ctranslate2==4.6.0
+
+# For advanced TheWhisper models (optional)
+# torch==2.6.0
+# transformers==4.48.0
+
+# Utilities
+editdistance==0.8.1
+pydantic==2.10.4
+python-dotenv==1.0.1

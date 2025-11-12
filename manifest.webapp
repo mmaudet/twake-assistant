@@ -32,6 +32,10 @@
     "mocks todos": {
       "description": "TO REMOVE: only used as demonstration about Cozy App data interactions",
       "type": "io.mocks.todos"
+    },
+    "transcriptions": {
+      "description": "Store Whisper voice transcriptions",
+      "type": "io.twake.transcriptions"
     }
   }
 }

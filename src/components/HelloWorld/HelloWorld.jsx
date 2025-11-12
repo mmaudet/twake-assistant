@@ -5,7 +5,11 @@ import Box from 'cozy-ui/transpiled/react/Box'
 
 const HelloWorld = () => {
   return (
-    <Box p={3} className="u-flex u-flex-justify-center u-flex-items-center" style={{ minHeight: '80vh' }}>
+    <Box
+      p={3}
+      className="u-flex u-flex-justify-center u-flex-items-center"
+      style={{ minHeight: '80vh' }}
+    >
       <Card>
         <Box p={4} className="u-ta-center">
           <Typography variant="h1" gutterBottom>

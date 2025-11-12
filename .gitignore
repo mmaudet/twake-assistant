@@ -14,6 +14,20 @@ dist/
 # Local CouchDB data
 cozy-data/
 
+# Python Backend
+backend/__pycache__/
+backend/*.pyc
+backend/*.pyo
+backend/*.pyd
+backend/venv/
+backend/.Python
+backend/pip-log.txt
+backend/pip-delete-this-directory.txt
+backend/.pytest_cache/
+backend/models/*.bin
+backend/models/*.pt
+backend/models/*.onnx
+
 # Coverage
 coverage/
 .nyc_output/

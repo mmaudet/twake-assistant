@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  # ========================================
+  # Cozy Stack (unchanged from original setup)
+  # ========================================
+  cozy:
+    image: cozy/cozy-app-dev
+    container_name: cozy-stack
+    ports:
+      - "8080:8080"   # Cozy web interface
+      - "5984:5984"   # CouchDB
+      - "8025:8025"   # MailHog (email testing)
+    volumes:
+      - ./build:/data/cozy-app/app
+      - ./cozy-data/db:/var/lib/couchdb
+      - ./cozy-data/storage:/data/cozy-storage
+    environment:
+      - COZY_DISABLE_CSP=1  # Disable CSP for development
+    networks:
+      - cozy-network
+
+  # ========================================
+  # TheWhisper Backend
+  # ========================================
+  whisper-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: whisper-backend
+    ports:
+      - "8000:8000"   # FastAPI server
+    volumes:
+      - ./backend:/app
+      - whisper-models:/root/.cache/huggingface  # Cache for model downloads
+    environment:
+      - PLATFORM=apple  # or 'nvidia' for GPU
+      - MODEL_NAME=TheStageAI/thewhisper-large-v3-turbo
+      - CHUNK_LENGTH_S=15
+      - PYTHONUNBUFFERED=1
+    networks:
+      - cozy-network
+    # Uncomment if you need GPU access (NVIDIA)
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+networks:
+  cozy-network:
+    driver: bridge
+
+volumes:
+  whisper-models:
+    driver: local
