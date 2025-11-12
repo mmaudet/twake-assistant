@@ -6,8 +6,6 @@
 
 // Backend API URL for Whisper transcription
 // Change this URL to point to your Whisper backend server
-// Examples:
-//   - Local: 'http://localhost:8000'
-//   - Remote: 'http://51.210.167.184:8000'
+// Example: 'http://localhost:8000' for local development
 export const WHISPER_BACKEND_URL =
   process.env.WHISPER_BACKEND_URL || 'http://localhost:8000'
